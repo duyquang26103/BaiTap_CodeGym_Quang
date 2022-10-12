@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table_text {
+            text-align: left;
+            background-color: red;
+            width: auto;
+            height: 30px;
+            text-decoration-color: beige;
+        }
+
+        form {
+            background-color: rgb(223, 223, 89);
+        }
+
+        tr td:first-child {
+            color: rgb(78, 78, 169);
+        }
+    </style>
+</head>
+
+<body>
+    <form action="CreateForm.html" method="post">
+        <fieldset>
+            <div class="table_text" style="background-color:tomato; font-size: 120%; color: blue;">ĐĂNG KÝ HỌC VIÊN
+            </div>
+            <Table>
+                <tr>
+                    <td> Họ và Tên </td>
+                    <td> <input placeholder="Nhập họ và tên" name="name" /> </td>
+                </tr>
+                <tr>
+                    <td> Ngày sinh </td>
+                    <td><input placeholder="Nhập ngày sinh" name="birthday" /> </td>
+                </tr>
+                <tr>
+                    <td> Giới tính </td>
+                    <td>
+                        <input type="radio" name="gender"> Nam
+                        <input type="radio" name="gender"> Nữ
+                    </td>
+                </tr>
+                <tr>
+                    <td> Địa chỉ</td>
+                    <td>
+                        <textarea name="address"> </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Lớp</td>
+                    <td>
+                        <select name="class">
+                            <option value="0">-- Chọn Lớp --- </option>
+                            <option value="1">Lớp 1</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> Email</td>
+                    <td><input placeholder="Nhập enail" name="email" /> </td>
+                </tr>
+                <tr>
+                    <td> Điện thoại</td>
+                    <td><input placeholder="Nhập số điện thoại" name="phone" /> </td>
+                </tr>
+            </Table>
+            <input style="box-shadow: 2px 2px;" type="submit" value="Gửi thông tin">
+            <input style="box-shadow: 2px 2px;" type="reset" value="Nhập lại">
+        </fieldset>
+    </form>
+</body>
+
+</html>

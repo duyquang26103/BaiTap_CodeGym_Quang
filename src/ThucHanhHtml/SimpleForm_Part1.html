@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table_text {
+            text-align: center;
+            background-color: red;
+            width: auto;
+            height: 30px;
+            text-decoration-color: beige;
+        }
+
+        tr td:first-child {
+            color: blue;
+        }
+
+        tr td:last-child {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="CreateForm.html" method="post">
+        <fieldset>
+            <div class="table_text" style="background-color:tomato; font-size: 120%;">SỞ THÍCH CỦA
+                BẠN</div>
+            <Table>
+                <tr>
+                    <td> Họ và Tên </td>
+                    <td> <input placeholder="Nhập họ và tên" name="name" /> </td>
+                </tr>
+                <tr>
+                    <td> Email </td>
+                    <td><input placeholder="Nhập enail" name="email" /> </td>
+                </tr>
+                <tr>
+                    <td> Sở Thích </td>
+                    <td>
+                        <input type="checkbox" name="hobby"> Thể Thao
+                        <input type="checkbox" name="hobby"> Âm Nhạc
+                        <input type="checkbox" name="hobby"> Đọc Sách
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="checkbox" name="hobby"> Lướt Web
+                        <input type="checkbox" name="hobby"> Chơi Game
+                        <input type="checkbox" name="hobby"> Điện Ảnh
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="checkbox" name="hobby"> Du Lịch
+                    </td>
+                </tr>
+            </Table>
+            <input style="box-shadow: 2px 2px;" type="submit" value="Gửi thông tin">
+            <input style="box-shadow: 2px 2px;" type="reset" value="Nhập lại">
+        </fieldset>
+    </form>
+</body>
+
+</html>
