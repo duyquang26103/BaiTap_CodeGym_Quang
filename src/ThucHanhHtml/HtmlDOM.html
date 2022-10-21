@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function hello() {
+            let txtHoTen = document.getElementById("name");
+            let string = `<b>${txtHoTen.value}</b>`;
+            document.getElementById("yourName1").innerHTML = string;
+            document.getElementById("yourName2").innerText = string;
+        }
+    </script>
+    <div>
+        Input your name
+        <input id="name">
+        <button type="button" onclick="hello();">ClickMe</button>
+    </div>
+    <div>
+        Say hello
+        <span id="yourName1"></span>
+        <br>
+        <span id="yourName2"></span>
+    </div>
+</body>
+
+</html>
