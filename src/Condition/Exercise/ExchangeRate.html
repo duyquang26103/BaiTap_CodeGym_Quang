@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ứng dụng chuyển đổi tiền tệ </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h2>Ứng dụng chuyển đổi tiền tệ</h2>
+    Amount <input type="text" id="amount" />
+    From Currency
+    <select id="from-currency">
+        <option value="VND">VND</option>
+        <option value="USD">USD</option>
+        <option value="JPY">JPY</option>
+    </select>
+    To Currency
+    <select id="to-currency">
+        <option value="VND">VND</option>
+        <option value="USD">USD</option>
+        <option value="JPY">JPY</option>
+    </select>
+
+    <br>
+    <button type="button" onclick="convertCurrency()">Convert</button>
+    <div id="result"></div>
+
+    <script>
+        const USD_TO_VND = 24845;
+        const JPY_TO_VND = 168.26;
+        const USD_TO_JPY = 147.69;
+
+        function convertCurrency() {
+            let amount = parseFloat(document.getElementById("amount").value);
+            let fromCurrency = document.getElementById("from-currency").value;
+            let toCurrency = document.getElementById("to-currency").value;
+            let result;
+
+            switch (fromCurrency) {
+                case "VND":
+                    switch (toCurrency) {
+                        case "USD":
+                            result = amount / USD_TO_VND;
+                            break;
+
+                        case "JPY":
+                            result = amount / JPY_TO_VND;
+                            break;
+                    }
+                    break;
+
+                case "USD":
+                    switch (toCurrency) {
+                        case "VND":
+                            result = amount * USD_TO_VND;
+                            break;
+
+                        case "JPY":
+                            result = amount * USD_TO_JPY;
+                            break;
+                    }
+                    break;
+
+                case "JPY":
+                    switch (toCurrency) {
+                        case "VND":
+                            result = amount * JPY_TO_VND;
+                            break;
+
+                        case "USD":
+                            result = amount / USD_TO_JPY;
+                            break;
+                    }
+                    break;
+            }
+
+            document.getElementById("result").innerHTML = `<strong>Result: </strong> ${result}`;
+        }
+    </script>
+</body>
+
+</html>
