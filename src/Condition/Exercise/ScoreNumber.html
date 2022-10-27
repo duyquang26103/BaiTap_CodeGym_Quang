@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function tinhDiem() {
+            let diemToan = parseFloat(document.getElementById("toan").value)
+            let diemVan = parseFloat(document.getElementById("van").value)
+            let diemAnh = parseFloat(document.getElementById("anh").value)
+            let diemKV = parseFloat(document.getElementById("khuVuc").value)
+            let diems = [diemToan, diemAnh, diemVan]
+            for (const diem of diems) {
+                if (diem > 10 || diem <= 0) {
+                    alert(`vui long nhap lai diem ${diem}`)
+                }
+            }
+            let ketQua = diemAnh + diemToan + diemVan + diemKV
+            document.getElementById("ketQua").innerHTML = `Tổng điểm đại học khối D: ${ketQua}`
+        }
+    </script>
+    <style>
+        #ketQua {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <table>
+                <tr>
+                    <td> Điểm Toán </td>
+                    <td>
+                        <input type="number" min="0" max="10" id="toan">
+                    </td>
+                </tr>
+                <tr>
+                    <td> Điểm Văn </td>
+                    <td>
+                        <input type="number" min="0" max="10" id="van">
+                    </td>
+                </tr>
+                <tr>
+                    <td> Điểm Anh </td>
+                    <td>
+                        <input type="number" min="0" max="10" id="anh">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="khuVuc">
+                            <option value="0.75">KV1</option>
+                            <option value="0.5">KV2-NT</option>
+                            <option value="0.25">KV2</option>
+                            <option value="0">KV3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" id="submit" onclick="tinhDiem()">Click me!</button>
+                    </td>
+                </tr>
+            </table>
+            <div id="ketQua"></div>
+
+        </fieldset>
+    </form>
+</body>
+
+</html>
