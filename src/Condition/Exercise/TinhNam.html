@@ -1,0 +1,100 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function chuyenDoiLichDuong() {
+            let namDuongLich = parseInt(document.getElementById("nam_duong_lich").value)
+            let lichCan = "";
+            let lichChi = "";
+
+            switch (namDuongLich % 10) {
+                case 0:
+                    lichCan = "Canh";
+                    break;
+                case 1:
+                    lichCan = "Tân";
+                    break;
+                case 2:
+                    lichCan = "Nhâm";
+                    break;
+                case 3:
+                    lichCan = "Quý";
+                    break;
+                case 4:
+                    lichCan = "Giáp";
+                    break;
+                case 5:
+                    lichCan = "Ất";
+                    break;
+                case 6:
+                    lichCan = "Bính";
+                    break;
+                case 7:
+                    lichCan = "Đinh";
+                    break;
+                case 8:
+                    lichCan = "Mậu";
+                    break;
+                case 9:
+                    lichCan = "Kỷ";
+                    break;
+            }
+
+            switch (namDuongLich % 12) {
+                case 0:
+                    lichChi = "Thân";
+                    break;
+                case 1:
+                    lichChi = "Dậu";
+                    break;
+                case 2:
+                    lichChi = "Tuất";
+                    break;
+                case 3:
+                    lichChi = "Hợi";
+                    break;
+                case 4:
+                    lichChi = "Tý";
+                    break;
+                case 5:
+                    lichChi = "Sửu";
+                    break;
+                case 6:
+                    lichChi = "Dần";
+                    break;
+                case 7:
+                    lichChi = "Mẹo";
+                    break;
+                case 8:
+                    lichChi = "Thìn";
+                    break;
+                case 9:
+                    lichChi = "Tỵ";
+                    break;
+                case 10:
+                    lichChi = "Ngọ";
+                    break;
+                case 11:
+                    lichChi = "Mùi";
+                    break;
+            }
+            let namAmLich = lichCan + " " + lichChi;
+            document.getElementById("result").innerHTML = namAmLich
+
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="nam_duong_lich">
+        <button type="button" onclick="chuyenDoiLichDuong()">Click Me!</button>
+    </div>
+    <div id="result"></div>
+</body>
+
+</html>
