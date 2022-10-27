@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function showPrice() {
+            let fruitName = document.getElementById("fruit_name").value;
+            let price = 0
+            switch (fruitName.toLowerCase()) {
+                case 'ổi': price = 20000; break;
+                case 'dưa hấu': price = 20000; break;
+                case 'táo': price = 30000; break;
+                case 'xoài': price = 30000; break;
+                case 'cam': price = 40000; break;
+                case 'chôm chôm': price = 40000; break;
+                case 'măng cụt': price = 50000; break;
+                default: price = 0; alert('Hãy nhập đúng tên của loại trái cây!')
+            }
+            document.getElementById("result").innerHTML = price;
+        }
+    </script>
+</head>
+
+<body>
+    <div> Giá Hoa Quả: </div>
+    <input type="text" id="fruit_name">
+    <button type="button" onclick="showPrice()">Xem giá</button>
+    <br>
+    <div id="result"></div>
+</body>
+
+</html>
