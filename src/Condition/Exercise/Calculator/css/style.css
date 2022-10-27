@@ -1,0 +1,16 @@
+button {
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+}
+
+#screen {
+    width: 360px;
+    height: 35px;
+    margin: 10px;
+
+}
+
+form {
+    width: fit-content;
+}
