@@ -13,41 +13,45 @@
 <body>
     <form>
         <fieldset>
-            <input type="number" id="screen" readonly>
-            <table>
-                <tr>
-                    <td>
-                        <button type="button" id="number_1" value="1" onclick="printNumberOnScreen(id)">1</button>
-                        <button type="button" id="number_2" value="2" onclick="printNumberOnScreen(id)">2</button>
-                        <button type="button" id="number_3" value="3" onclick="printNumberOnScreen(id)">3</button>
-                        <button type="button" id="addition" value="+">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" id="number_4" value="4" onclick="printNumberOnScreen(id)">4</button>
-                        <button type="button" id="number_5" value="5" onclick="printNumberOnScreen(id)">5</button>
-                        <button type="button" id="number_6" value="6" onclick="printNumberOnScreen(id)">6</button>
-                        <button type="button" id="subtraction" value="-">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" id="number_7" value="7" onclick="printNumberOnScreen(id)">7</button>
-                        <button type="button" id="number_8" value="8" onclick="printNumberOnScreen(id)">8</button>
-                        <button type="button" id="number_9" value="9" onclick="printNumberOnScreen(id)">9</button>
-                        <button type="button" id="multiplication" value="+">+</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="button" id="delete" value="delete">C</button>
-                        <button type="button" id="number_0" value="0" onclick="printNumberOnScreen(id)">0</button>
-                        <button type="button" id="equal" value="equal">=</button>
-                        <button type="button" id="division" value="+">+</button>
-                    </td>
-                </tr>
-            </table>
+            <input type="number" id="man-hinh" readonly>
+            <div id="control">
+                <div id="ban-phim">
+                    <table>
+                        <tr>
+                            <td>
+                                <button type="button" id="number_1" value="1" onclick="nhanSo('1')">1</button>
+                                <button type="button" id="number_2" value="2" onclick="nhanSo('2')">2</button>
+                                <button type="button" id="number_3" value="3" onclick="nhanSo('3')">3</button>
+                                <button type="button" id="addition" value="+" onclick="nhanToanTu('+')">+</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" id="number_4" value="4" onclick="nhanSo('4')">4</button>
+                                <button type="button" id="number_5" value="5" onclick="nhanSo('5')">5</button>
+                                <button type="button" id="number_6" value="6" onclick="nhanSo('6')">6</button>
+                                <button type="button" id="subtraction" value="-" onclick="nhanToanTu('-')">-</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" id="number_7" value="7" onclick="nhanSo('7')">7</button>
+                                <button type="button" id="number_8" value="8" onclick="nhanSo('8')">8</button>
+                                <button type="button" id="number_9" value="9" onclick="nhanSo('9')">9</button>
+                                <button type="button" id="multiplication" value="+" onclick="nhanToanTu('*')">*</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" id="delete" value="delete" onclick="nhanXoa()">C</button>
+                                <button type="button" id="number_0" value="0" onclick="nhanSo('0')">0</button>
+                                <button type="button" id="equal" value="equal" onclick="nhanKetQua()">=</button>
+                                <button type="button" id="division" value="/" onclick="nhanToanTu('/')">/</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </fieldset>
     </form>
 </body>
