@@ -1,0 +1,28 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let fibonacci = [1, 1];
+        let i = 2;
+        while (true) {
+            let element = fibonacci[i - 1] + fibonacci[i - 2];
+            fibonacci.push(element);
+            if (element % 5 === 0) {
+                document.writeln('So dau tien cua day fibo chia het cho 5 la: ', element + '<br>');
+                break;
+            }
+            i++;
+        }
+        document.write('day fibonacci: ', fibonacci);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let ketQua;
+        for (let index = 1; index < 101; index++) {
+            if (index % 3 === 0 && index % 5 === 0) {
+                ketQua = 'FizzBuzz';
+            } else {
+                if (index % 3 === 0) {
+                    ketQua = 'fizz';
+                } else if (index % 5 === 0) {
+                    ketQua = 'buzz';
+                } else {
+                    ketQua = index;
+                }
+            }
+            document.write(`So thu tu thu ${index}: `, ketQua + '<br>');
+
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

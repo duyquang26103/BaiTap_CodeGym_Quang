@@ -1,0 +1,27 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let fibonacci = [1, 1];
+        let ketQua = 0;
+        for (let i = 2; i < 20; i++) {
+            let element = fibonacci[i - 1] + fibonacci[i - 2];
+            fibonacci.push(element);
+        }
+        console.log(fibonacci)
+        for (const element of fibonacci) {
+            ketQua += parseInt(element);
+        }
+        console.log(ketQua);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
