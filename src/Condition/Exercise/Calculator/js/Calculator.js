@@ -56,7 +56,7 @@ function _tinhToan(soHang1, soHang2, toanTu) {
         case "-":
             result = soHang1 - soHang2;
             break;
-        case "x":
+        case "*":
             result = soHang1 * soHang2;
             break;
         case "/":
