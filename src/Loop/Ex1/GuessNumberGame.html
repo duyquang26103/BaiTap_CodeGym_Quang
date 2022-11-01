@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function guessNumber() {
+            let number = parseInt(prompt('Nhap so muon doan trong khoan: '));
+            let randomNumber = getRandomInt(number);
+            let inputNumber = 0;
+            console.log(randomNumber);
+            do {
+                inputNumber = parseInt(prompt('Nhap so muon doan: '));
+                if (inputNumber > randomNumber) {
+                    alert('Ban nhap lon hon so dung!');
+                } else if (inputNumber < randomNumber) {
+                    alert('Ban nhap nho hon so dung!');
+                }
+            } while (randomNumber !== inputNumber);
+            alert('Ban da doan dung!');
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="guessNumber()">
+        Click to play!
+    </button>
+
+</body>
+
+</html>
