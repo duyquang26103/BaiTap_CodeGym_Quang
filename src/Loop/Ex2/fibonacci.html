@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fibonacciCal() {
+            let fibonacci = [1, 1];
+            let n = null;
+            do {
+                n = parseInt(prompt('input the size of fibonacci: '));
+                if (n < 1) {
+                    alert('Nhap so lon hon 0');
+                }
+            } while (n <= 0);
+            let i = 2;
+            if (n === 1) {
+                fibonacci = fibonacci.pop();
+            } else {
+                while (i < n) {
+
+                    let element = fibonacci[i - 1] + fibonacci[i - 2];
+                    fibonacci.push(element);
+                    i++;
+                }
+            }
+            document.getElementById("fibo").innerHTML = fibonacci;
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="fibonacciCal()">
+        Nhap vao so nguyen duong!
+    </button>
+    <div id="fibo"></div>
+</body>
+
+</html>
