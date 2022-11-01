@@ -1,0 +1,75 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function printTriangle() {
+            triangleTop();
+            document.write("<br>");
+            triangleBot();
+            document.write("<br>");
+            triangleTop1();
+            document.write("<br>");
+            triangleBot1();
+        }
+
+        function triangleTop() {
+            let result = "";
+            for (let i = 0; i < 5; i++) {
+                result += "*"
+                document.write(result + "<br>");
+            }
+        }
+
+        function triangleBot() {
+            let result = "******";
+            for (let i = 6; i > 0; i--) {
+                result = result.slice(0, -1);
+                document.write(result + "<br>");
+            }
+        }
+
+        function triangleTop1() {
+            for (let i = 0; i < 5; i++) {
+                let result = "";
+                result += (addSpace(4 - i) + addStar(i + 1));
+                document.write(result + "<br>");
+            }
+        }
+        function triangleBot1() {
+            for (let i = 0; i < 6; i++) {
+                let result = "";
+                result += (addSpace(i) + addStar(5 - i));
+                document.write(result + "<br>");
+            }
+        }
+
+        function addSpace(number) {
+            // let space = "&nbsp;";
+            let space = "&ensp;";
+            let result = ""
+            for (let i = 0; i < number; i++) {
+                result += space;
+            }
+            return result;
+        }
+
+        function addStar(number) {
+            let star = "*";
+            let result = ""
+            for (let i = 0; i < number; i++) {
+                result += star;
+            }
+            return result;
+        }
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="printTriangle()">Click me!</button>
+</body>
+
+</html>
