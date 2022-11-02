@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <h3>Caro Game Simple</h3>
+    <p id="carogame" />
+    <br /><br />
+    <div>
+        <input type='button' value='Change Value X' onclick='changeValueX()'>
+        <br />
+        <input type='button' value='Change Value Y' onclick='changeValueY()'>
+    </div>
+    <script>
+        let b = document.getElementById("carogame");
+
+        let board = [];
+        let data = "";
+        for (let i = 0; i < 5; i++) {
+            board[i] = new Array(".", ".", ".", ".", ".");
+        }
+
+        for (let i = 0; i < 5; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;";
+            }
+        }
+
+        // data += "<br/><br/><input type='button' value='Change Value X' onclick='changeValueX()'> <br/><input type='button' value='Change Value Y' onclick='changeValueY()'>";
+        b.innerHTML = data;
+
+        function changeValueX() {
+            let positionX = prompt("X: ");
+            let positionY = prompt("Y: ");
+            data = "";
+            board[positionX][positionY] = "x";
+            for (let i = 0; i < 5; i++) {
+                data += "<br/>";
+                for (let j = 0; j < 5; j++) {
+                    data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+            b.innerHTML = "<hr/>" + data;
+            console.log(board);
+
+        }
+
+        function changeValueY() {
+            let positionX = prompt("X: ");
+            let positionY = prompt("Y: ");
+            data = "";
+            board[positionX][positionY] = "o";
+            for (let i = 0; i < 5; i++) {
+                data += "<br/>";
+                for (let j = 0; j < 5; j++) {
+                    data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                }
+            }
+            b.innerHTML = "<hr/>" + data;
+            console.log("board", board);
+            checkWinner();
+
+        }
+
+        function checkWinner() {
+            // let count = 0;
+            const count = {};
+            const result = [];
+
+            for (const positionX in board) {
+                // for (const positionY of board[positionX]) {
+
+                // if (positionY.indexOf(board[positionX]) !== positionY.lastIndexOf(board[positionX])) {
+                //     count += 1;
+                //     break;
+                // }
+                console.log("positionY", board[positionX]);
+                board[positionX].forEach(item => {
+                    if (count[item]) {
+                        count[item] += 1;
+                    }
+                    count[item] = 1
+                })
+
+                for (let prop in count) {
+                    if (count[prop] >= 2) {
+                        result.push(prop);
+                    }
+                }
+
+                console.log("count:", count);
+                console.log("result:", result);
+                // }
+            }
+            console.log(count);
+
+
+
+            // array.forEach(item => {
+            //     if (count[item]) {
+            //         count[item] += 1
+            //         return
+            //     }
+            //     count[item] = 1
+            // })
+
+            // for (let prop in count) {
+            //     if (count[prop] >= 2) {
+            //         result.push(prop)
+            //     }
+            // }
+
+            // console.log(count)
+            // return result;
+
+        }
+    </script>
+</body>
+
+</html>

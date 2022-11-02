@@ -10,7 +10,7 @@
 <body>
     <h1>Thao tac voi mang</h1>
     <div>
-        <input id="soNhap">
+        <input id="soNhap" type="number">
         <button type="button" onclick="themPhanTu()">Add</button>
         <button type="button" onclick="hienThiMang()">Display</button>
     </div>
@@ -18,9 +18,13 @@
     <script>
         let mang = [];
         function themPhanTu() {
-            let value = document.getElementById("soNhap").value;
-            mang.push(value);
-            document.getElementById("soNhap").value = "";
+            let input = document.getElementById("soNhap");
+            if (input.value !== "") {
+                mang.push(input.value);
+                input.value = "";
+                input.focus();
+            }
+
         }
 
         function hienThiMang() {
