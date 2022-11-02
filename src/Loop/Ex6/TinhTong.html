@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function tinhTong() {
+            let soThuNhat = parseInt(document.getElementById('num_1').value);
+            let soThuHai = 0;
+            let result = 0;
+            do {
+                soThuHai = parseInt(document.getElementById('num_2').value);
+                if (soThuHai < soThuNhat) {
+                    alert('Nhập số thứ 2 lớn hơn số thứ nhất!');
+                    document.getElementById('num_2').value = "0";
+                    soThuHai = parseInt(document.getElementById('num_2').value)
+                    break;
+                }
+
+            } while (soThuNhat > soThuHai);
+            console.log(soThuHai);
+            for (let i = soThuNhat; i <= soThuHai; i++) {
+                result += i;
+            }
+
+            document.getElementById('result').innerHTML = result;
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="number" id="num_1">
+    <input type="number" id="num_2">
+
+    <button type="button" onclick="tinhTong()">
+        Click Me to Calculation!
+    </button>
+    <div id="result"></div>
+</body>
+
+</html>
