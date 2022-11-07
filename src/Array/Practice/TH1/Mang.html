@@ -28,7 +28,10 @@
         }
 
         function hienThiMang() {
-            document.getElementById('ketQua').innerHTML = mang;
+            let chuoi = "";
+            mang.forEach((item, index) => chuoi += `element ${index}: ${item} <br>`);
+            console.log(chuoi);
+            document.getElementById('ketQua').innerHTML = chuoi;
         }
     </script>
 </body>
