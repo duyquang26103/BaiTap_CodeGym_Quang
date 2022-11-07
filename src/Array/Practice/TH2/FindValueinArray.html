@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Tìm gía trị trong mảng</h2>
+    <div>
+        Khoi tao mang co:
+        <br>
+        <input type="number" min="1" id="soPhanTu" size="7">
+        <div>
+            <button type="button" onclick="khoiTaoMang()">Khởi tạo mảng</button>
+        </div>
+        <br>
+        Phan tu can tim:
+        <br>
+        <input id="giaTriTim" type="number">
+        <div>
+            <button type="button" onclick="timGiaTri()">Tìm</button>
+        </div>
+    </div>
+    <div id="ketQua"></div>
+    <script>
+        let mang = [];
+        function khoiTaoMang() {
+            let soPhanTu = parseInt(document.getElementById("soPhanTu").value);
+            for (let i = 0; i < soPhanTu; i++) {
+                let randomNumber = Math.floor(Math.random() * 56);
+                console.log(randomNumber);
+                mang.push(randomNumber);
+            }
+            console.log(mang);
+        }
+
+        function timGiaTri() {
+            let giaTri = parseInt(document.getElementById("giaTriTim").value);
+            let i = 0;
+            for (const element of mang) {
+                if (giaTri === element) {
+                    alert("Value " + giaTri + " found at " + i);
+                    break;
+                }
+                i++;
+            }
+        }
+    </script>
+</body>
+
+</html>
