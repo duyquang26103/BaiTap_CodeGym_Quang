@@ -2,117 +2,113 @@
 <html lang="en">
 
 <body>
-    <h3>Caro Game Simple</h3>
-    <p id="carogame" />
-    <br /><br />
-    <div>
-        <input type='button' value='Change Value X' onclick='changeValueX()'>
-        <br />
-        <input type='button' value='Change Value Y' onclick='changeValueY()'>
-    </div>
-    <script>
-        let b = document.getElementById("carogame");
+    <h3>Tic tac toe</h3>
 
+    <p id="nguoi_choi"></p>
+    <div id="tic_tac_toe"></div><br>
+    X:<input type="number" id="x" />
+    Y:<input type="number" id="y" />
+    <input type="button" value="Đánh" onclick="danhTichTacToe()">
+
+    <script>
+        const dauNguoiChoi1 = "o";
+        const dauNguoiChoi2 = "x";
+        let nguoiChoiArr = [1, 2];
+        let nguoiChoi = nguoiChoiArr[Math.floor(Math.random() * 2)];
+        let b = document.getElementById("tic_tac_toe");
+        let p = document.getElementById("nguoi_choi");
         let board = [];
         let data = "";
-        for (let i = 0; i < 5; i++) {
-            board[i] = new Array(".", ".", ".", ".", ".");
+        let kyHieu = "";
+
+        for (let i = 0; i < 3; i++) {
+            board[i] = new Array(".", ".", ".");
         }
 
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 3; i++) {
             data += "<br/>";
-            for (let j = 0; j < 5; j++) {
-                data += board[i][j] + "&nbsp;&nbsp;";
+            for (let j = 0; j < 3; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;";
             }
         }
+        b.innerHTML = "<hr/>" + data;
+        p.innerHTML = `Đến lượt người chơi ${nguoiChoi}`;
 
-        // data += "<br/><br/><input type='button' value='Change Value X' onclick='changeValueX()'> <br/><input type='button' value='Change Value Y' onclick='changeValueY()'>";
-        b.innerHTML = data;
 
-        function changeValueX() {
-            let positionX = prompt("X: ");
-            let positionY = prompt("Y: ");
+        function danhTichTacToe() {
+            let positionX = parseInt(document.getElementById("x").value);
+            let positionY = parseInt(document.getElementById("y").value);
+
             data = "";
-            board[positionX][positionY] = "x";
-            for (let i = 0; i < 5; i++) {
+            if (nguoiChoi == 1) {
+                kyHieu = dauNguoiChoi1;
+                board[positionX][positionY] = kyHieu;
+                nguoiChoi = 2;
+            } else {
+                kyHieu = dauNguoiChoi2;
+                board[positionX][positionY] = kyHieu;
+                nguoiChoi = 1;
+            }
+
+            for (let i = 0; i < 3; i++) {
                 data += "<br/>";
-                for (let j = 0; j < 5; j++) {
+                for (let j = 0; j < 3; j++) {
                     data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
             }
             b.innerHTML = "<hr/>" + data;
-            console.log(board);
-
+            p.innerHTML = `Đến lượt người chơi ${nguoiChoi}`;
+            document.getElementById("x").value = "";
+            document.getElementById("y").value = "";
+            kiemTraThang();
         }
 
-        function changeValueY() {
-            let positionX = prompt("X: ");
-            let positionY = prompt("Y: ");
-            data = "";
-            board[positionX][positionY] = "o";
-            for (let i = 0; i < 5; i++) {
-                data += "<br/>";
-                for (let j = 0; j < 5; j++) {
-                    data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
-                }
-            }
-            b.innerHTML = "<hr/>" + data;
-            console.log("board", board);
-            checkWinner();
+        function kiemTraThang() {
+            let thang = false;
+            let ketQuaCheo1 = [];
+            let ketQuaCheo2 = [];
+            for (let i = 0; i < 3; i++) {
+                let ketQuaNgang = [];
+                let ketQuaDoc = [];
 
-        }
-
-        function checkWinner() {
-            // let count = 0;
-            const count = {};
-            const result = [];
-
-            for (const positionX in board) {
-                // for (const positionY of board[positionX]) {
-
-                // if (positionY.indexOf(board[positionX]) !== positionY.lastIndexOf(board[positionX])) {
-                //     count += 1;
-                //     break;
-                // }
-                console.log("positionY", board[positionX]);
-                board[positionX].forEach(item => {
-                    if (count[item]) {
-                        count[item] += 1;
+                for (let j = 0; j < 3; j++) {
+                    ketQuaNgang.push(board[i][j]);
+                    ketQuaDoc.push(board[j][i]);
+                    if (i == j) {
+                        ketQuaCheo1.push(board[i][j]);
                     }
-                    count[item] = 1
-                })
 
-                for (let prop in count) {
-                    if (count[prop] >= 2) {
-                        result.push(prop);
+                    if (i + j == 2) {
+                        ketQuaCheo2.push(board[i][j]);
                     }
                 }
 
-                console.log("count:", count);
-                console.log("result:", result);
-                // }
+                thongBaoThang(kiemTraMang(ketQuaNgang, kyHieu));
+                thongBaoThang(kiemTraMang(ketQuaDoc, kyHieu));
             }
-            console.log(count);
+            thongBaoThang(kiemTraMang(ketQuaCheo1, kyHieu));
+            thongBaoThang(kiemTraMang(ketQuaCheo2, kyHieu));
+        }
 
+        function kiemTraMang(arr, kyHieu) {
+            let giongNhau = true;
 
+            for (let i = 0; i < 2; i++) {
+                for (let j = i + 1; j < 3; j++) {
+                    if (arr[i] != arr[j] || arr[i] != kyHieu) {
+                        giongNhau = false;
+                    }
+                }
+            }
 
-            // array.forEach(item => {
-            //     if (count[item]) {
-            //         count[item] += 1
-            //         return
-            //     }
-            //     count[item] = 1
-            // })
+            return giongNhau;
+        }
 
-            // for (let prop in count) {
-            //     if (count[prop] >= 2) {
-            //         result.push(prop)
-            //     }
-            // }
-
-            // console.log(count)
-            // return result;
-
+        function thongBaoThang(isThang) {
+            if (isThang) {
+                alert("Chúc mừng bạn chiến thắng!");
+                location.reload();
+            }
         }
     </script>
 </body>
