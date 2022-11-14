@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input id="row">
+        <input id="col">
+    </div>
+    <div id="banCo"></div>
+    <button type="button" onclick="inputValue(); printGameBoard()">CHANGE VALUE</button>
+    <script>
+        let b = document.getElementById("banCo");
+        const ROW = 5, COL = 5;
+        let array = [];
+
+        function createGameBoard() {
+            for (let i = 0; i < ROW; i++) {
+                array[i] = new Array(COL);
+                for (let j = 0; j < COL; j++) {
+                    array[i][j] = "O";
+                }
+            }
+        }
+
+        function inputVa7yuhlue() {
+            let row = parseInt(document.getElementById('row').value);
+            let col = parseInt(document.getElementById('col').value);
+            array[row][col] = "X";
+            console.log(array);
+        }
+
+        function printGameBoard() {
+            let chuoi = "";
+            for (let i = 0; i < array.length; i++) {
+                chuoi += "<br>";
+                for (let j = 0; j < array[i].length; j++) {
+                    chuoi += array[i][j] + "&nbsp;&nbsp;";
+                }
+            }
+            document.getElementById("banCo").innerHTML = chuoi;
+        }
+
+        createGameBoard();
+        printGameBoard();
+    </script>
+</body>
+
+</html>
