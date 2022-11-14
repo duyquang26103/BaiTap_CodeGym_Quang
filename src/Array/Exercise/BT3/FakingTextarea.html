@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Type Any slowly</h2>
+    <textarea rows="10" cols="50" id="value" onkeydown="pressKeys();"> </textarea>
+    <script>
+        let str = 'Người đáng thương là anh';
+        let content = "";
+        let messageStrArr = [];
+        for (let i = 0; i < str.length; i++) {
+            messageStrArr.push(str[i]);
+        }
+
+        function pressKeys() {
+            let textareaValue = document.getElementById("value").value;
+            let length = textareaValue.length;
+
+            if (length > 0) {
+                for (let i = 0; i <= length; i++) {
+                    content += messageStrArr[i];
+
+                    if (i == (messageStrArr.length - 1)) {
+                        document.getElementById("value").value = "";
+                        content = "";
+                    }
+                }
+            }
+
+            document.getElementById("value").value = content;
+            content = "";
+            setTimeout("pressKeys()", 500);
+        }
+    </script>
+</body>
+
+</html>
