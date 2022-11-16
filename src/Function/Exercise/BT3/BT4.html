@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="nhapR" type="number">
+    <button type="button" onclick="tinhDienTich()">tim dien tich</button>
+    <button type="button" onclick="tinhChuVi()">tim chu vi</button>
+    <div id="dienTich"></div>
+    <div id="chuVi"></div>
+    <script>
+        function tinhDienTich() {
+            let banKinh = document.getElementById("nhapR").value;
+            let dienTich = banKinh * banKinh * 3.14;
+            document.getElementById("dienTich").innerHTML = "Diện tích hình tròn là:" + dienTich;
+        }
+
+        function tinhChuVi() {
+            let banKinh = document.getElementById("nhapR").value;
+            let chuVi = banKinh * 2 * 3.14;
+            document.getElementById("chuVi").innerHTML = "Chu vi hình tròn là:" + chuVi;
+        }
+    </script>
+</body>
+
+</html>

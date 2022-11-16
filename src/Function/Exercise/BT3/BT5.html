@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="number" type="number">
+    <button type="button" onclick="tinhGiaiThua()">Click me!</button>
+    <div id="result"></div>
+    <script>
+        function tinhGiaiThua() {
+            let giaiThua = 1;
+            let number = document.getElementById("number").value;
+            if (number === 0) {
+                document.getElementById("result").innerHTML = 0;
+            }
+            for (let i = 1; i <= number; i++) {
+                giaiThua *= i;
+                document.getElementById("result").innerHTML = giaiThua;
+            }
+        }
+    </script>
+</body>
+
+</html>

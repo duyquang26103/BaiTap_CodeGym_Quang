@@ -1,0 +1,34 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="input_value">
+    <button type="button" onclick="checkMin()">Check!</button>
+    <div id="result"></div>
+    <script>
+        function checkMin() {
+            let value = document.getElementById("input_value").value.split(",");
+            let max;
+            if (value.length === 0) {
+                alert("Vui lòng nhập số vào!")
+            } else {
+                max = value[0];
+                for (const iterator of value) {
+                    if (max > iterator) {
+                        max = iterator;
+                    }
+                }
+            }
+            document.getElementById("result").innerHTML = max;
+
+        }
+    </script>
+</body>
+
+</html>

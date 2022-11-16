@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Input array: <input id="array"> <br>
+    Input character: <input id="character">
+    <button type="button" onclick="kiemTraMang()">Click me!</button>
+    <div id="result"></div>
+    <script>
+        function kiemTraMang() {
+            let arr = document.getElementById('array').value.split(",");
+            let char = document.getElementById('character').value;
+            let count = 0;
+
+            for (const ele of arr) {
+                if (ele === char) {
+                    count++;
+                }
+            }
+
+            // if (count = 0) {
+            //     document.getElementById("result").innerHTML = count;
+            // }
+
+            document.getElementById("result").innerHTML = count;
+        };
+    </script>
+</body>
+
+</html>
