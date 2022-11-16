@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="soNhap" type="number">
+    <button type="button" onclick="printSoNguyenTo(); printPrimeToN();">Click me to check!</button>
+    <div id="resultIsPrime"></div>
+    <div id="printPrime"></div>
+    <script>
+
+        let noiDung = "";
+
+        function isPrime(number) {
+            if (number < 2) {
+                return false;
+            } else {
+                for (let i = 2; i < number; i++) {
+                    if (number % i === 0) {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+        }
+
+        function printSoNguyenTo() {
+            let soNguyen = parseInt(document.getElementById("soNhap").value);
+            if (isPrime(soNguyen)) {
+                noiDung = soNguyen + " la so nguyen to"
+            } else {
+                noiDung = soNguyen + " khong la so nguyen to"
+            }
+
+            document.getElementById("resultIsPrime").innerHTML = noiDung
+        }
+
+        function printPrimeToN() {
+            let soNguyen = parseInt(document.getElementById("soNhap").value);
+            let result = [];
+            for (let i = 0; i <= soNguyen; i++) {
+                if (isPrime(i)) {
+                    result.push(i);
+                }
+            }
+            document.getElementById("printPrime").innerHTML = result;
+        }
+
+    </script>
+</body>
+
+</html>
