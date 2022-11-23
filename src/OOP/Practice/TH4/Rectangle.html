@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        Input Width: <input type="number" id="input_width">
+        Input Height: <input type="number" id="input_height">
+        Input Color: <input type="text" id="input_color">
+    </div>
+    <br>
+    <div>
+        <button type="button" onclick="draw()">Draw!</button>
+        <button type="button" onclick="calculator()">Calcular</button>
+    </div>
+    <br>
+    <div id="area"></div>
+    <div id="perimeter"></div>
+    <canvas id="myCanvas" height="700px" width="1000px" style="border: solid;"></canvas>
+
+    <script>
+        class Retangle {
+            constructor(x, y, color) {
+                this.width = x;
+                this.height = y;
+                this.color = color;
+            }
+
+            getWidth() {
+                return this.width;
+            };
+
+            setWidth(x) {
+                this.width = x;
+            };
+
+            getHeigh() {
+                return this.height;
+            };
+
+            setHeigh(x) {
+                this.height = x;
+            }
+
+            getColor() {
+                return this.height;
+            };
+
+            setColor(color) {
+                this.color = color;
+            }
+
+            calPerimeter() {
+                return 2 * (this.width + this.height);
+            }
+
+            calArea() {
+                return this.width * this.height;
+            }
+
+            draw() {
+                let c = document.getElementById('myCanvas');
+                let ctx = c.getContext('2d');
+                console.log(this.color)
+
+                ctx.clearRect(10, 10, this.width, this.height);
+                ctx.fillStyle = this.color;
+                ctx.fillRect(10, 10, this.width, this.height);
+            }
+        }
+
+        let retangle = new Retangle();
+
+        function draw() {
+            let width = parseInt(document.getElementById("input_width").value);
+            let height = parseInt(document.getElementById("input_height").value);
+            let color = document.getElementById("input_color").value;
+            retangle.setWidth(width);
+            retangle.setHeigh(height);
+            retangle.setColor(color);
+            retangle.draw();
+        }
+
+        function calculator() {
+            let width = parseInt(document.getElementById("input_width").value);
+            let height = parseInt(document.getElementById("input_height").value);
+            let area = `Diện tích: ${retangle.calArea()}`
+            let perimeter = `Chu vi: ${retangle.calPerimeter()}`
+            document.getElementById('area').innerHTML = area;
+            document.getElementById('perimeter').innerHTML = perimeter;
+        }
+
+        // retangle.calPerimeter();
+        // retangle.calArea();
+
+    </script>
+</body>
+
+</html>
