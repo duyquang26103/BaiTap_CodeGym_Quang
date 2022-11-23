@@ -1,0 +1,24 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" height="700px" width="1000px" style="border: solid;"></canvas>
+    <script>
+        let c = document.getElementById("myCanvas");
+        let ctx = c.getContext("2d");
+
+        let imageObj = new Image();
+        imageObj.onload = () => {
+            ctx.drawImage(imageObj, 69, 60)
+        }
+        imageObj.src = "https://cdn.tgdd.vn/Products/Images/42/245545/iphone-14-den-22.jpg"
+    </script>
+</body>
+
+</html>
