@@ -1,0 +1,178 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #myProgress {
+            width: 100%;
+            height: 30px;
+            position: relative;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            background-color: #4CAF50;
+            width: 10px;
+            height: 30px;
+            position: absolute;
+        }
+    </style>
+    <script>
+        class Battery {
+
+            constructor() {
+                this.energy = 0;
+            }
+
+            setEnergy(energy) {
+                this.energy = energy;
+            };
+
+            getEnergy() {
+                return this.energy;
+            };
+
+            decreaseEnergy() {
+                if (this.energy > 0) {
+                    this.energy--;
+                }
+            }
+
+            increaseEnergy(eNum) {
+                this.energy += eNum;
+            }
+
+        };
+
+        class FlashLamp {
+
+            constructor() {
+                this.status = false;
+            }
+
+            setBattery(battery) {
+                this.battery = battery;
+            };
+
+            getBatteryInfo() {
+                return this.battery.getEnergy();
+            };
+
+            light() {
+                if (this.status) {
+                    // document.getElementById("lightStatus").innerHTML = "Lighting";
+                } else {
+                    // document.getElementById("lightStatus").innerHTML = "Not Lighting";
+                }
+            };
+
+            turnOn() {
+                this.status = true;
+            };
+
+            turnOff() {
+                this.status = false;
+            }
+
+        };
+
+        let battery = new Battery();
+        let flashLamp = new FlashLamp();
+        flashLamp.setBattery(battery);
+        console.log(flashLamp.getBatteryInfo(), flashLamp.status)
+    </script>
+</head>
+
+<body>
+    <div>
+        Cần nạp: <input id="mucPinNap" type="number" min="1" max="100">
+        <button type="button" onclick="handleBattery()">Nạp Pin</button>
+    </div>
+
+    <fieldset>
+        <div>
+            <button type="button" id="turnOnLigt" onclick="handleOn(), move()">ON</button>
+            <button type="button" id="turnOffLigt" onclick="handleOff()">OFF</button>
+        </div>
+        <div>Status: <span id="lightStatus"></span>
+        </div>
+        <div>Battery: <span id="batteryStatus"></span>
+        </div>
+    </fieldset>
+
+    <div id="myProgress">
+        <div id="myBar"></div>
+    </div>
+
+    <br>
+    <!-- <button onclick="move()">Click Me</button> -->
+
+    <script>
+        function showStatus() {
+            document.getElementById("lightStatus").innerHTML = flashLamp.status;
+        }
+
+        function showBattery() {
+            document.getElementById("batteryStatus").innerHTML = flashLamp.getBatteryInfo();
+        }
+
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = flashLamp.getBatteryInfo();
+            var id = setInterval(frame, 500);
+            function frame() {
+                if (flashLamp.status === true) {
+                    if (width == 0) {
+                        clearInterval(id);
+                    } else {
+                        width--;
+                        elem.style.width = width + '%';
+                    }
+                } else {
+                    clearInterval(id);
+                }
+
+            }
+        }
+
+        let myInterval;
+
+        function decreaseBattery() {
+            flashLamp.battery.decreaseEnergy();
+            showStatus();
+            showBattery()
+            if (flashLamp.battery.getEnergy === 0) {
+                clearInterval(myInterval);
+            }
+        }
+
+        function handleOn() {
+            flashLamp.turnOn();
+            myInterval = setInterval(decreaseBattery, 500);
+        }
+
+        function handleOff() {
+            flashLamp.turnOff();
+            if (myInterval) {
+                console.log(myInterval);
+                clearInterval(myInterval);
+            }
+            showStatus();
+        }
+
+        function handleBattery() {
+            let value = document.getElementById("mucPinNap").value;
+            flashLamp.battery.increaseEnergy(value);
+        }
+
+        showStatus();
+        showBattery();
+    </script>
+
+
+</body>
+
+</html>
