@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function isValidDate(day, month, year) {
+            return !isNaN(Date.parse(`${year}-${month}-${day}`));
+        }
+
+        class MyDate {
+            constructor(day, month, year) {
+                if (isValidDate(day, month, year)) {
+                    this.day = day;
+                    this.month = month;
+                    this.year = year;
+                }
+            }
+
+            toString() {
+                return `${this.day}/${this.month}/${this.year}`;
+            }
+        }
+
+        let noel = new MyDate(11, 12, 2000);
+        console.log(noel.toString());
+    </script>
+</body>
+
+</html>
