@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="Fahrenheit"></div>
+    <div id="Kevin"></div>
+    <script>
+        class Temperature {
+            constructor(celsius) {
+                this.celsius = celsius;
+            }
+
+            convertToFahrenheit() {
+                return (this.celsius * 1.8) + 32
+            }
+
+            convertToKenvin() {
+                return this.celsius + 273.15
+            }
+        }
+
+        let temperature = new Temperature(25);
+        document.getElementById("Fahrenheit").innerHTML = `${temperature.celsius} độ C = ${temperature.convertToFahrenheit()} độ F`;
+        document.getElementById("Kevin").innerHTML = `${temperature.celsius} độ C = ${temperature.convertToKenvin()} độ K`;
+
+    </script>
+</body>
+
+</html>
