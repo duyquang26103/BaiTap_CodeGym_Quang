@@ -1,0 +1,104 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Apple {
+            constructor() {
+                this.weight = 10;
+            }
+
+            decrease() {
+                this.weight -= 1;
+            }
+
+            isEmpty() {
+                return this.weight === 0 ? true : false;
+            }
+
+            getWeight() {
+                return this.weight;
+            }
+        }
+
+        class Human {
+            constructor(name, gender, weight) {
+                this.name = name;
+                this.gender = gender.toLowerCase;
+                this.weight = weight;
+            }
+
+            isMale() {
+                return this.gender === 'male' ? true : false;
+            }
+
+            setGender(gender) {
+                this.gender = gender.toLowerCase;
+            }
+
+            checkApple(apple) {
+                return apple ? true : false;
+            }
+
+            eat(apple) {
+                apple.decrease();
+                this.weight += 1;
+            }
+
+            say(char) {
+                console.log(char);
+            }
+
+            getName() {
+                return this.name;
+            }
+
+            setName(name) {
+                this.name = name;
+            }
+
+            getWeight() {
+                return this.weight;
+            }
+
+            setWeight(weight) {
+                this.weight = weight;
+            }
+        }
+        let apple = new Apple();
+        let adam = new Human('Adam', 'male', 65);
+        let eva = new Human('Eva', 'female', 45);
+
+        function eatApple() {
+            eva.say('Eva: Ăn trái cấm không Adam!');
+            adam.say('Adam: Ok ăn!');
+
+            for (let i = 10; i > 0; i--) {
+                if (!apple.isEmpty()) {
+                    eva.eat(apple);
+                    eva.say('Eva: đang ăn táo!');
+                    adam.eat(apple);
+                    adam.say('Adam: đang ăn táo!');
+                } else {
+                    eva.say('Hết táo rùi nè Adam!');
+                    adam.say('Nghỉ thôi!');
+                    console.log("Cân nặng của eva: " + eva.getWeight());
+                    console.log("Cân nặng của adam: " + adam.getWeight());
+                    break;
+                }
+            }
+
+        }
+
+        eatApple();
+
+    </script>
+</body>
+
+</html>
