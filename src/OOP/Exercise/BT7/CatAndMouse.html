@@ -1,0 +1,73 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Rat {
+            constructor(name, weight, speed, status) {
+                this.name = name;
+                this.weight = weight;
+                this.speed = speed;
+                this.status = status;
+            }
+
+            squeak() {
+                console.log('Chít chít');
+            }
+        }
+
+        class Cat {
+            constructor(name, weight, speed) {
+                this.name = name;
+                this.weight = weight;
+                this.speed = speed;
+            }
+
+            catchMouse(mouse) {
+                console.log(`${this.name} cat is catching... ${mouse.name} rat`);
+                if (mouse.speed < this.speed) {
+                    console.log("Catched!!!");
+                    mouse.squeak();
+                    this.eatMouse(mouse);
+                } else {
+                    console.log(`The ${mouse.name}'s speed is higher than the ${this.name}'s speed`);
+                }
+            }
+
+            eatMouse(mouse) {
+                console.log(`${this.name} cat is eating ${mouse.name} rat`)
+                if (mouse.status === 'live') {
+                    console.log('Ate!!!');
+                    mouse.status = 'death';
+                    this.weight += mouse.weight;
+                    console.log("The weight of cat is: " + this.weight);
+                    this.purr();
+                } else {
+                    console.log(`The ${mouse.name} rat is dead so ${this.name} cat can't eat!`);
+                }
+            }
+
+            purr() {
+                console.log('Meow Meow no quá!');
+            }
+
+        }
+
+        let tom = new Cat('Tom', 5, 30);
+        let jerry = new Rat('Jerry', 0.3, 14, 'live');
+        let suri = new Rat('Suri', 1, 34, 'live');
+        let rose = new Rat('Rose', 1, 0, 'dead');
+
+        tom.catchMouse(jerry);
+        tom.catchMouse(suri);
+        tom.catchMouse(rose);
+    </script>
+</body>
+
+</html>
