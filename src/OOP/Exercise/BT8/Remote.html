@@ -1,0 +1,80 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Remote {
+            constructor(code) {
+                this.code = code;
+            }
+
+            changeChanel(tivi, chanel) {
+                console.log("current chanel: " + tivi.chanel);
+                tivi.chanel = chanel;
+                console.log("The channel after change: " + tivi.chanel);
+
+            }
+
+            volumeUp(tivi, volume) {
+                console.log("current volume: " + tivi.volume);
+                tivi.volume += volume;
+                console.log("volume after Up: " + tivi.volume);
+
+            }
+
+            volumeDown(tivi, volume) {
+                console.log("current volume: " + tivi.volume);
+                tivi.volume -= volume;
+                console.log("volume after Down: " + tivi.volume);
+
+            }
+
+            turnOffTivi(tivi) {
+                tivi.status = 'Off';
+                console.log("tivi's status: " + tivi.status);
+
+            }
+
+            turnOnTivi(tivi) {
+                tivi.status = 'ON';
+            }
+        }
+
+        class Tivi {
+            constructor(chanel, volume) {
+                this.chanel = chanel;
+                this.volume = volume;
+                this.status = false;
+            }
+
+            changeChanel(chanel) {
+                this.chanel = chanel;
+            }
+
+            changeVolume(volume) {
+                this.volume += volume;
+            }
+
+            turnOn() {
+                this.status = 'On';
+                console.log("tivi's status: " + this.status);
+            }
+        }
+
+        let remote = new Remote(123);
+        let tivi = new Tivi(0, 3);
+        tivi.turnOn();
+        tivi.changeChanel(7);
+        remote.changeChanel(tivi, 3);
+        remote.volumeUp(tivi, 2);
+        remote.turnOffTivi(tivi);
+    </script>
+</body>
+
+</html>
