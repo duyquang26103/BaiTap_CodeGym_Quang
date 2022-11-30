@@ -1,0 +1,109 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <fieldset>
+            <legend> Hình chữ nhật thứ 1:</legend>
+            Input X: <input type="number" value="10" id="x1">
+            Input Y: <input type="number" value="100" id="y1">
+            <br>
+            Input Width: <input type="number" value="100" id="input_width1">
+            Input Height: <input type="number" value="200" id="input_height1">
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend> Hình chữ nhật thứ 12:</legend>
+            Input X: <input type="number" value="10" id="x2">
+            Input Y: <input type="number" value="200" id="y2">
+            <br>
+            Input Width: <input type="number" value="100" id="input_width2">
+            Input Height: <input type="number" value="200" id="input_height2">
+            <br>
+        </fieldset>
+        <button type="button" onclick="kiemTra()">Kiểm tra</button>
+    </div>
+    <div id="result">
+    </div>
+    <div>
+        <canvas id="myCanvas" height="700px" width="1000px" style="border: solid;"></canvas>
+    </div>
+
+    <script>
+        class Rect {
+            constructor(x, y, width, height, color) {
+                this.x = x;
+                this.y = y;
+                this.w = width;
+                this.h = height;
+                this.color = color
+            }
+
+            draw(ctx) {
+                ctx.lineWidth = 4;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+            }
+        }
+
+        function isCollision(rect1, rect2) {
+            let distX = (rect1.x + (rect1.w / 2)) - (rect2.x + (rect2.w) / 2);
+            if (distX < 0)
+                distX = -distX;
+
+            const distW = (rect1.w + rect2.w) / 2;
+
+            let distY = (rect1.y + (rect1.h / 2)) - (rect2.y + (rect2.h) / 2);
+            if (distY < 0)
+                distY = -distY;
+
+            const distH = (rect1.h + rect2.h) / 2;
+
+            return (distX <= distW && distY <= distH);
+        }
+
+
+        let c = document.getElementById("myCanvas");
+        let ctx = c.getContext("2d");
+
+        function kiemTra() {
+            ctx.clearRect(0, 0, 800, 600);
+            let x1 = parseInt(document.getElementById("x1").value);
+            let y1 = parseInt(document.getElementById("y1").value);
+
+            let width1 = parseInt(document.getElementById("input_width1").value);
+            let height1 = parseInt(document.getElementById("input_height1").value);
+
+            let x2 = parseInt(document.getElementById("x2").value);
+            let y2 = parseInt(document.getElementById("y2").value);
+
+            let width2 = parseInt(document.getElementById("input_width2").value);
+            let height2 = parseInt(document.getElementById("input_height2").value);
+
+            let rect1 = new Rect(x1, y1, width1, height1, "red");
+            let rect2 = new Rect(x2, y2, width2, height2, "blue");
+
+            rect1.draw(ctx);
+            rect2.draw(ctx);
+
+            let string;
+            let coVaCham = isCollision(rect1, rect2);
+            if (coVaCham) {
+                string = "hinh va cham"
+            } else {
+                string = "hinh khong va cham"
+            }
+            document.getElementById("result").innerHTML = string
+        }
+
+    </script>
+</body>
+
+</html>

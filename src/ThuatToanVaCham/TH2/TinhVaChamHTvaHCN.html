@@ -1,0 +1,136 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <fieldset>
+            <legend> Hình chữ nhật:</legend>
+            Input X: <input type="number" value="10" id="x1">
+            Input Y: <input type="number" value="100" id="y1">
+            <br>
+            Input Width: <input type="number" value="100" id="input_width1">
+            Input Height: <input type="number" value="200" id="input_height1">
+            <br>
+        </fieldset>
+
+        <fieldset>
+            <legend> Hình tròn:</legend>
+            Input X: <input type="number" value="210" id="x2">
+            Input Y: <input type="number" value="200" id="y2">
+            <br>
+            Input Radius: <input type="number" value="100" id="radius">
+            <br>
+        </fieldset>
+        <button type="button" onclick="kiemTra()">Kiểm tra</button>
+    </div>
+    <div id="result">
+    </div>
+    <div>
+        <canvas id="myCanvas" height="700px" width="1000px" style="border: solid;"></canvas>
+    </div>
+
+    <script>
+        class Rect {
+            constructor(x, y, width, height, color) {
+                this.x = x;
+                this.y = y;
+                this.w = width;
+                this.h = height;
+                this.color = color;
+            }
+
+            draw(ctx) {
+                ctx.lineWidth = 4;
+                ctx.fillStyle = this.color;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+            }
+        }
+
+        class Circle {
+            constructor(x, y, radius, color) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+
+            }
+
+            draw(ctx) {
+                ctx.beginPath();
+                ctx.strokeStyle = this.color;
+                // ctx.stroke = this.color;
+                ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+                ctx.stroke();
+
+            }
+        }
+
+        function checkCollision(cir, rect) {
+            let Ax = cir.x;
+            let Ay = cir.y;
+
+            let rect_left = rect.x;
+            let rect_top = rect.y;
+            let rect_right = rect.x + rect.w;
+            let rect_bottom = rect.y + rect.h;
+
+            if (cir.x < rect_left)
+                Ax = rect_left;
+            else if (cir.x > rect_right)
+                Ax = rect_right;
+
+            if (cir.y < rect_top)
+                Ay = rect_top;
+            else if (cir.y > rect_bottom)
+                Ay = rect_bottom;
+
+            let dx = cir.x - Ax;
+            let dy = cir.y - Ay;
+
+            return (dx * dx + dy * dy) <= cir.radius * cir.radius;
+        }
+
+
+        let c = document.getElementById("myCanvas");
+        let ctx = c.getContext("2d");
+
+        function kiemTra() {
+            ctx.clearRect(0, 0, 800, 600);
+            let x1 = parseInt(document.getElementById("x1").value);
+            let y1 = parseInt(document.getElementById("y1").value);
+
+            let width1 = parseInt(document.getElementById("input_width1").value);
+            let height1 = parseInt(document.getElementById("input_height1").value);
+
+            let x2 = parseInt(document.getElementById("x2").value);
+            let y2 = parseInt(document.getElementById("y2").value);
+
+            let radius = parseInt(document.getElementById("radius").value);
+
+            let rect1 = new Rect(x1, y1, width1, height1, "red");
+            let cir1 = new Circle(x2, y2, radius, "blue");
+
+            rect1.draw(ctx);
+            cir1.draw(ctx);
+
+
+            let string;
+            let coVaCham = checkCollision(cir1, rect1);
+            if (coVaCham) {
+                string = "hinh va cham"
+            } else {
+                string = "hinh khong va cham"
+            }
+            document.getElementById("result").innerHTML = string
+        }
+
+    </script>
+</body>
+
+</html>
