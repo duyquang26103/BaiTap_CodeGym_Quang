@@ -1,9 +1,6 @@
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
 
-canvas.height = 484;
-canvas.width = 900;
-
 const flappyBird = new Image();
 const sprites = new Image();
 flappyBird.src = './img/king_bird.png';
@@ -11,8 +8,17 @@ sprites.src = './img/sprites.png';
 
 let game = 'start';
 let frame = 0;
+const BEST_SCORE = 'bestScore'
 
-const bg = {
+flappyBird.height = 26;
+flappyBird.width = 38;
+canvas.height = 484;
+canvas.width = 900;
+
+let arrGround = [];
+let pipes = [];
+
+const backGround = {
     sX: 226,
     sY: 0,
     sW: 226,
@@ -31,6 +37,19 @@ const bg = {
     }
 }
 
+const numbers = [
+    { name: 0, sX: 770, sY: 92, sW: 22, sH: 32, cW: 22, cH: 32 },
+    { name: 1, sX: 209, sY: 710, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 2, sX: 455, sY: 249, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 3, sX: 475, sY: 250, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 4, sX: 500, sY: 249, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 5, sX: 520, sY: 250, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 6, sX: 455, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 7, sX: 478, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 8, sX: 500, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
+    { name: 9, sX: 520, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
+]
+
 class Ground {
     constructor(cX, cY) {
         this.cX = cX;
@@ -44,7 +63,6 @@ class Ground {
     }
 }
 
-let arrGround = [];
 
 for (let i = 0; i < 5; i++) {
     let ground = new Ground();
@@ -90,7 +108,7 @@ const end = {
 }
 
 class Pipes {
-    constructor(cX, cY, space) {
+    constructor(cX, cY, space, dX) {
         this.cX = cX;
         this.cY = cY;
         this.cW = 40;
@@ -102,23 +120,20 @@ class Pipes {
         this.sYb = 505;
         this.sW = 42;
         this.sH = 250;
-        this.dX = -2;
+        this.dX = dX;
     }
 
     draw() {
         ctx.beginPath();
-        ctx.drawImage(sprites, this.sXt, this.sYt, this.sW, this.sH, this.cX, this.cY, this.cW, this.cH);;
+        ctx.drawImage(sprites, this.sXt, this.sYt, this.sW, this.sH, this.cX, this.cY, this.cW, this.cH);
         ctx.drawImage(sprites, this.sXb, this.sYb, this.sW, this.sH, this.cX, this.cY + this.space + this.cH, this.cW, this.cH);
     }
 }
 
-let pipes = [];
 
 function random(min, max) {
     return Math.ceil(Math.random() * (max - min) + min);
 }
-
-
 
 function newPipes() {
     for (let i = 1; i < 4; i++) {
@@ -126,11 +141,10 @@ function newPipes() {
         pipe.cX = random(430, 500) * i;
         pipe.cY = random(-220, 0);
         pipe.space = random(140, 200);
+        pipe.dX = -2;
         pipes.push(pipe);
     }
 }
-
-newPipes();
 
 function drawArrPipes() {
     pipes.forEach(pipe =>
@@ -145,23 +159,17 @@ function updateArrPipes() {
 
     if (pipes[0].cX <= -82) {
         pipes.splice(0, 1);
-        let pipe = new Pipes(pipes[pipes.length - 1].cX + random(430, 500), random(-220, 0), random(140, 200));
+        let space = random(140, 200);
+        let speed = -2;
+
+        if (score.value > 10) {
+            space = random(100, 140);
+        }
+
+        let pipe = new Pipes(pipes[pipes.length - 1].cX + random(430, 500), random(-220, 0), space, speed);
         pipes.push(pipe);
     }
 }
-
-const numbers = [
-    { name: 0, sX: 770, sY: 92, sW: 22, sH: 32, cW: 22, cH: 32 },
-    { name: 1, sX: 209, sY: 710, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 2, sX: 455, sY: 249, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 3, sX: 475, sY: 250, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 4, sX: 500, sY: 249, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 5, sX: 520, sY: 250, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 6, sX: 455, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 7, sX: 478, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 8, sX: 500, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
-    { name: 9, sX: 520, sY: 286, sW: 20, sH: 32, cW: 20, cH: 32 },
-]
 
 class Score {
     constructor(value, cX, cY) {
@@ -201,30 +209,28 @@ class Score {
             split = (this.value.toString()).split("");
             for (const number of numbers) {
                 if (split[0] == number.name) {
-                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, 520 - 10, 275, number.cW / 2, number.cH / 2);
+                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, this.cX, this.cY, number.cW / 2, number.cH / 2);
                 }
 
                 if (split[1] == number.name) {
-                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, 520, 275, number.cW / 2, number.cH / 2);
+                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, this.cX + 10, this.cY, number.cW / 2, number.cH / 2);
                 }
             }
         } else {
             split = this.value.toString();
             for (const number of numbers) {
                 if (split[0] == number.name) {
-                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, 515, 275, number.cW / 2, number.cH / 2);
+                    ctx.drawImage(sprites, number.sX, number.sY, number.sW, number.sH, this.cX + 5, this.cY, number.cW / 2, number.cH / 2);
                 }
             }
         }
     }
 }
 
-let score = new Score(0, 250, 400);
-
 class Bird {
     constructor() {
         this.x = canvas.width / 5;
-        this.y = bg.cH / 2;
+        this.y = backGround.cH / 2;
     }
 
     draw() {
@@ -251,17 +257,54 @@ class Bird {
             if (this.x === pipes[0].cX + 40 || this.x === pipes[0].cX + 39) {
                 score.value++;
             }
+            bestScore.value = getBestScoreToLocalStorage(score.value);
         }
     }
 }
 
-let bird = new Bird();
+class Medal {
+    constructor(i) {
+        this.sX = 188;
+        this.sY = [400, 437, 900];
+        this.sW = 40;
+        this.sH = 37;
+        this.cX = canvas.width / 2 - 58;
+        this.cY = 280;
+        this.cW = 40;
+        this.cH = 37;
+        this.i = i;
+    }
 
-flappyBird.height = 26;
-flappyBird.width = 38;
+    draw() {
+        ctx.beginPath();
+        ctx.drawImage(sprites, this.sX, this.sY[this.i], this.sW, this.sH, this.cX, this.cY, this.cW, this.cH);
+    }
+
+    update() {
+        if (score.value == 0) {
+            this.i = 2;
+        }
+
+        if (score.value == bestScore.value) {
+            this.i = 1;
+        } else if (score.value >= bestScore.value / 2 && score.value < bestScore.value) {
+            this.i = 0;
+
+        }
+    }
+}
+
+newPipes();
+let score = new Score(0, 510, 275);
+let bestScore = new Score(0, 510, 310);
+let bird = new Bird();
+let medal = new Medal();
 
 function draw() {
-    bg.draw();
+    backGround.draw();
+    bird.draw();
+    drawArrGround();
+
     if (game === 'start') {
         start.draw();
     }
@@ -269,22 +312,25 @@ function draw() {
     if (game === 'play') {
         score.draw();
     }
-    bird.draw();
-    drawArrGround();
+
+    if (game === 'end') {
+        end.draw();
+        score.drawSmall();
+        bestScore.drawSmall();
+        medal.draw();
+    }
+
 }
 
 function update() {
     if (game === 'play') {
         drawArrPipes();
-        updateArrPipes()
+        updateArrPipes();
         drawArrGround();
         updateArrGround();
-        bird.update();
     }
-    if (game === 'end') {
-        end.draw();
-        score.drawSmall();
-    }
+    bird.update();
+    medal.update();
 
 }
 
@@ -294,6 +340,18 @@ function run() {
     frame++;
     draw();
     update();
+}
+
+function getBestScoreToLocalStorage(currentScore) {
+    let scoreData = parseInt(localStorage.getItem(BEST_SCORE));
+
+    if (currentScore === 0 && isNaN(scoreData)) {
+        scoreData = 0;
+    }
+
+    let maxScore = Math.max(currentScore, scoreData);
+    localStorage.setItem(BEST_SCORE, JSON.stringify(maxScore));
+    return maxScore;
 }
 
 document.addEventListener("click", function (event) {
@@ -313,7 +371,7 @@ document.addEventListener("click", function (event) {
                 score.value = 0;
                 pipes = [];
                 newPipes();
-                bird.y = bg.cH / 2;
+                bird.y = backGround.cH / 2;
                 game = 'start'
             }
             break;
